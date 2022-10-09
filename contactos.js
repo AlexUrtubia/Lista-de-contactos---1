@@ -73,6 +73,17 @@ var editar_contacto = (contactos) => {
     } else {
       opciones = ["nombre", "apellido", "telefono", "dirección", "ciudad"]
       var opcion = prompt("¿Qué desea editar? Elija y escriba alguna de las siguientes opciones\n",opciones)
+      if (opcion == "nombre" || opcion == "apellido" || opcion == "telefono") {
+        contactos[editar-1][opcion] = prompt("Ingrese el nuevo valor")
+      return contactos
+      } else if (opcion == "ciudad" || opcion == "dirección"){
+        contactos[editar-1].ubicación[opcion] = prompt("Ingrese el nuevo valor")
+        return contactos
+      }
+      else {
+        console.log("Ingrese un valor correcto");
+        return contactos
+      }
     }
   }
 }
