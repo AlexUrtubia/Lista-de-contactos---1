@@ -1,26 +1,72 @@
-const contactos = ["Alex Urtubia", "Victoria Ulloa", "David Contreras", "Catalina Cabezas"];
+const contactos = []
 
-var nuevo_contacto = (contactos, nuevo) => {
-    nuevo.toString();
-    contactos.push(nuevo);
+var nuevo_contacto = (contactos) => {
+  var largo = contactos.length
+  var objeto = {
+    id:'',
+    nombre:'',
+    apellido:'',
+    telefono:'',
+    ubicación: {}
+  }
+
+  if (largo == 0) {
+    objeto.id = 0
+  } else {
+    objeto.id = largo
+  }
+  objeto.nombre = prompt("Introduce el nombre");
+  objeto.apellido = prompt("Introduce el apellido")
+  objeto.telefono = prompt("Introduce el telefono")
+  objeto.ubicación.ciudad = prompt("Introduce ciudad");
+  objeto.ubicación.dirección = prompt("Introduce la dirección");
+  contactos.push(objeto)
+  console.log(contactos)
 }
 
-var eliminar_contacto = (contactos, eliminar) => {
-  const indice = contactos.indexOf(eliminar);
-  console.log(indice);
-  if (indice === -1) {
-    console.log("No se encuentra ese contacto en la lista");
+var eliminar_contacto = (contactos) => {
+  var eliminar = prompt("Introduce el n° del contacto que desee eliminar")
+  if (eliminar < 1){
+    console.log("Indique un número correcto")
   } else {
-    contactos.splice(indice, 1);
+    eliminar.toNumber();
+    if (eliminar > contactos.length) {
+      console.log("No se encuentra ese n° de contacto en la lista");
+    } else {
+      var confirmar = prompt(
+        "Está seguro de eliminar a",
+        contactos[eliminar].nombre,
+        contactos[eliminar].nombre + "?",
+        "\nIngrese 'SI' para confirmar."
+      );
+      if (confirmar == "SI") {
+        contactos.splice(eliminar+1, 1);
+      }
+    }
   }
 }
 
 var imprimir = (contactos) => {
-  console.log(contactos)
+  for (i = 0; i < contactos.length; i++) {
+    console.log(
+      "Contacto n°",
+      i + 1,
+      "\nNombre:",
+      contactos[i].nombre,
+      contactos[i].apellido,
+      "\nTeléfono:",
+      contactos[i].telefono,
+      "\nUbicacion:",
+      contactos[i].ubicación.dirección+
+      ",",
+      contactos[i].ubicación.ciudad
+    );
+  }
 }
 
 
-nuevo_contacto(contactos, "Juan Silva")
+nuevo_contacto(contactos)
+nuevo_contacto(contactos)
 imprimir(contactos);
-eliminar_contacto(contactos, "David Contreras")
+eliminar_contacto(contactos)
 imprimir(contactos)
