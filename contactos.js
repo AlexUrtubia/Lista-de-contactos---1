@@ -25,22 +25,21 @@ var nuevo_contacto = (contactos) => {
 }
 
 var eliminar_contacto = (contactos) => {
-  var eliminar = prompt("Introduce el n° del contacto que desee eliminar")
+  var eliminar = parseInt(prompt("Introduce el n° del contacto que desee eliminar"))
   if (eliminar < 1){
     console.log("Indique un número correcto")
   } else {
-    eliminar.toNumber();
     if (eliminar > contactos.length) {
       console.log("No se encuentra ese n° de contacto en la lista");
     } else {
       var confirmar = prompt(
-        "Está seguro de eliminar a",
-        contactos[eliminar].nombre,
-        contactos[eliminar].nombre + "?",
-        "\nIngrese 'SI' para confirmar."
-      );
+          "Está seguro de eliminar a",
+          contactos[eliminar-1].nombre,
+          contactos[eliminar-1].apellido + "?",
+          "\nIngrese 'SI' para confirmar."
+        )
       if (confirmar == "SI") {
-        contactos.splice(eliminar+1, 1);
+        contactos.splice(eliminar-1, 1);
       }
     }
   }
