@@ -63,6 +63,19 @@ var imprimir = (contactos) => {
   }
 }
 
+var editar_contacto = (contactos) => {
+  var editar = parseInt(prompt("Introduzca el n° del contacto que desee editar"))
+  if (editar < 1){
+    console.log("Indique un número correcto")
+  } else {
+    if (editar > contactos.length) {
+      console.log("No se encuentra ese n° de contacto en la lista");
+    } else {
+      opciones = ["nombre", "apellido", "telefono", "dirección", "ciudad"]
+      var opcion = prompt("¿Qué desea editar? Elija y escriba alguna de las siguientes opciones\n",opciones)
+    }
+  }
+}
 
 nuevo_contacto(contactos)
 nuevo_contacto(contactos)
