@@ -3,6 +3,7 @@ const contactos = []
 var nuevo_contacto = (contactos) => {
   var largo = contactos.length
   var objeto = {
+    orden: largo+1,
     id:'',
     nombre:'',
     apellido:'',
@@ -49,7 +50,7 @@ var imprimir = (contactos) => {
   for (i = 0; i < contactos.length; i++) {
     console.log(
       "Contacto n°",
-      i + 1,
+      contactos[i].orden,
       "\nNombre:",
       contactos[i].nombre,
       contactos[i].apellido,
@@ -87,6 +88,25 @@ var editar_contacto = (contactos) => {
     }
   }
 }
+
+
+
+var invert_order = (contactos) => {
+  let len = contactos.length;
+  for (let i = 0; i < len-1; i++) {
+      for (let j = 0; j < len-1; j++) {
+          if (contactos[j].orden < contactos[j + 1].orden) {
+              let tmp = contactos[j].orden;
+              contactos[j].orden = contactos[j + 1].orden;
+              contactos[j + 1].orden = tmp;
+          }
+      }
+  }
+  contactos.sort((a, b) => {
+    return a.orden - b.orden;
+  });
+  console.log(contactos);
+};
 
 nuevo_contacto(contactos)
 nuevo_contacto(contactos)
